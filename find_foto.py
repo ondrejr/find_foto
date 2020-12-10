@@ -20,7 +20,7 @@ def dir(pth, i):
 def inp():
     """
     Enter the name of the searched key + data initialization.
-    ""
+    """
     print('1 - init: ')
     print()
     print('zadej jméno adresáře na 3: ')
