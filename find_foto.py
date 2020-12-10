@@ -1,6 +1,13 @@
+"""
+This script can load a list of directories (containing photos) into a file. 
+It can then search in this file by substring.
+"""
 import os
 
 def dir(pth, i):
+    """
+    Recursively writes the contents of the directory to a file.
+    ""
     for entr in os.listdir(pth):
         cesta = pth + '\\' + entr
         if os.path.isdir(cesta):
@@ -11,6 +18,9 @@ def dir(pth, i):
             dir(cesta, i)
 
 def inp():
+    """
+    Enter the name of the searched key + data initialization.
+    ""
     print('1 - init: ')
     print()
     print('zadej jméno adresáře na 3: ')
