@@ -2,20 +2,24 @@
 This script can load a list of directories (containing photos) into a file. 
 It can then search in this file by substring.
 """
+
 import os
 
-def dir(pth, i):
+pth = 'x:\\foto'
+i = [0]
+
+def dir(pth):
     """
     Recursively writes the contents of the directory to a file.
-    ""
+    """
     for entr in os.listdir(pth):
         cesta = pth + '\\' + entr
         if os.path.isdir(cesta):
             with open("list.txt", "a+") as lst:
                 lst.write(cesta+'\n')
-            i += 1    
+            i[0] += 1    
             print('{} {}'.format(i, cesta))
-            dir(cesta, i)
+            dir(cesta)
 
 def inp():
     """
@@ -30,8 +34,8 @@ def inp():
             os.remove('list.txt')
         except FileNotFoundError:
             pass
-        dir('d:\\foto', 0)
-        imp()
+        dir(pth)
+        return inp()
     else:    
         return la.lower()
 
