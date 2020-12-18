@@ -25,9 +25,9 @@ def inp():
     """
     Enter the name of the searched key + data initialization.
     """
-    print('1 - init: ')
     print()
-    print('zadej jméno adresáře na 3: ')
+    print('1 - init: ')
+    print('zadej řetězce oddělené mezerou: ')
     la = input()
     if la == '1':
         try:
@@ -44,17 +44,23 @@ la=inp()
 last = ''
 #i = 0
 while la != '':
-    if len(la) >= 3:
+    if len(la) > 1:
         with open("list.txt", "r") as lst:
             re = lst.readlines()    
         for adr in re:
-            ind = adr.rstrip().lower().find(la)
-            if ind > -1:
+            pokr = True
+            for ad in la.lower().split(' '):
+                ind = adr.rstrip().lower().find(ad)
+                if ind == -1:                        # pokud 1 z oddělených mezerou nesedí, pak nenalezeno
+                    pokr = False
+            if pokr:
+                """
                 if (last == adr[:ind]): # or (i<5):
                     print('  '+adr[ind:].rstrip())
                     #i +=1
                 else:
-                    print(adr.rstrip())
-                    last = adr[:ind]
-                    #i = 0
+                """
+                print(adr.rstrip())
+                last = adr[:ind]
+                #i = 0
     la=inp()
