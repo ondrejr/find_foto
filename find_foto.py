@@ -27,7 +27,7 @@ def inp():
     """
     print()
     print('1 - init: ')
-    print('zadej řetězce oddělené mezerou: ')
+    print('enter parts of directory names separated by a space: ')
     la = input()
     if la == '1':
         try:
@@ -51,7 +51,7 @@ while la != '':
             pokr = True
             for ad in la.lower().split(' '):
                 ind = adr.rstrip().lower().find(ad)
-                if ind == -1:                        # pokud 1 z oddělených mezerou nesedí, pak nenalezeno
+                if ind == -1:                        # if 1 of the separated space does not fit, then not found
                     pokr = False
             if pokr:
                 """
