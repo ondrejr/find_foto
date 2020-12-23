@@ -4,22 +4,31 @@ It can then search in this file by substring.
 """
 
 import os
+import datetime
 
 pth = 'x:\\foto'
+#pth = 'c:\\Doc\\Foto'
+pth='q:'
 i = [0]
 
-def dir(pth):
+def dir(pth, pths = []):
     """
     Recursively writes the contents of the directory to a file.
     """
     for entr in os.listdir(pth):
         cesta = pth + '\\' + entr
         if os.path.isdir(cesta):
-            with open("list.txt", "a+") as lst:
-                lst.write(cesta+'\n')
             i[0] += 1    
             print('{} {}'.format(i, cesta))
-            dir(cesta)
+            dir(cesta, pths = [])
+        else:
+            dat = '{}'.format(datetime.datetime.fromtimestamp(os.path.getmtime(cesta)))[:10]
+            if dat not in pths:
+                pths.append(dat)
+    if pths != []:
+        with open("list.txt", "a+") as lst:
+            lst.write('{};{}\n'.format(pth, set(pths)))
+
 
 def inp():
     """
@@ -60,7 +69,22 @@ while la != '':
                     #i +=1
                 else:
                 """
-                print(adr.rstrip())
-                last = adr[:ind]
+                #ad = adr.split(',')
+                adrs = adr.rstrip().split(';')
+                lax = adrs[1].rstrip().split(',')
+                mi = '2100'
+                ma = ''
+                for i in lax:
+                    val = i.split("'")[1]
+                    if val < mi:
+                        mi = val
+                    if val > ma:
+                        ma = val
+                if mi == ma:
+                    print('{} {}'.format(adrs[0], mi))
+                else:    
+                    print('{} {} {}'.format(adrs[0], mi, ma))
+                #print('{} {}'.format(adrs[0], lax))
+                last = ad[0][:ind]
                 #i = 0
     la=inp()
