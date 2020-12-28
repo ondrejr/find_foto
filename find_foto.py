@@ -50,7 +50,6 @@ def inp():
     """
     Enter the name of the searched key + data initialization.
     """
-
     print()
     print('1 - init / 2 - min.max. date: ')
     print('min date: {}'.format(vals['min_date']))
@@ -101,7 +100,7 @@ while la != '':
                 lax = adrs[1].rstrip().split(',')
                 mi = vals['max_date']
                 ma = ''
-                for i in lax:                       # zjistit maximální minimální hodnoty
+                for i in lax:                        # find min.max. values in data
                     val = i.split("'")[1]
                     if (val >= vals['min_date']) and (val <= vals['max_date']):
                         if val < mi:
