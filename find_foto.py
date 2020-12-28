@@ -42,7 +42,7 @@ def input_date(txt, vls):
     if len(la) > 3:
         vals[vls] = la + vals[vls][len(la):]
     else:
-        print('invalid input')
+        print('short year ' + txt)
     return la
 
 
@@ -52,13 +52,13 @@ def inp():
     """
 
     print()
-    print('1 - init / 2 - min date / 3 - max date: ')
+    print('1 - init / 2 - min.max. date: ')
     print('min date: {}'.format(vals['min_date']))
     print('max date: {}'.format(vals['max_date']))
     print('enter parts of directory names separated by a space: ')
     la = input()
 
-    if (la == '1') or (la == '2') or (la == '3'):
+    if (la == '1') or (la == '2'):
         if la == '1':
             print('are you sure y/n ?')
             la = input()
@@ -69,9 +69,8 @@ def inp():
                     pass
                 dir(pth)
         if la == '2':
-            la = input_date('min.', 'min_date')
-        if la == '3':
-            la = input_date('max.', 'max_date')
+            input_date('min.', 'min_date')
+            input_date('max.', 'max_date')
         return inp()
     else:    
         return la.lower()
